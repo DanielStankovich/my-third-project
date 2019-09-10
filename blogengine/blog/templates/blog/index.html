@@ -1,0 +1,24 @@
+﻿{% extends 'blog/base_blog.html' %}
+
+{% block title %}
+    Posts list
+{% endblock %}
+
+{% block content %}
+<h1 class="mb-5"></h1>
+    {% for post in page_object.object_list %}
+        <div class="row justify-content-center">
+            <div class="card w-75">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+
+                    <form action="{{ post.get_delete_url }}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" name="button" class="btn btn-danger">Execute</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% endblock %}
